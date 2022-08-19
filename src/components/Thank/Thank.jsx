@@ -1,21 +1,21 @@
 import { useHistory } from "react-router-dom";
 
-function Submit() {
+function Thank() {
 
     const history = useHistory()
 
     const next = () => {
-        history.push('/thank')
+        history.push('/feeling')
     }
 
-    return (
+    return(
         <>
-            <h1>IS all your info correct?</h1>
+            <h1>Thank!</h1>
             <form onSubmit={next}>
-                <button>Next</button>
+                <button>Start New Survey?</button>
             </form>
         </>
     )
 }
 
-export default Submit
+export default Thank

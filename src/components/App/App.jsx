@@ -9,6 +9,7 @@ import Understand from '../Understand/Understand';
 import Support from '../Support/Support';
 import Comment from '../Comment/Comment';
 import Submit from '../Submit/Submit';
+import Thank from '../Thank/Thank';
 
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
       </Route>
       <Route path={'/submit'}>
         <Submit />
+      </Route>
+      <Route path={'/thank'}>
+        <Thank />
       </Route>
     </Router >
   );
