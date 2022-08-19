@@ -33,7 +33,9 @@ function App() {
         <Comment />
       </Route>
       <Route path={'/submit'}>
-        <Submit />
+        <>
+          <Submit />
+        </>
       </Route>
       <Route path={'/thank'}>
         <Thank />
