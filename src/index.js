@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 const surveyResults = (state = [], action) => {
+    console.log(state)
     if (action.type === 'FEELING') {
         return [...state, action.payload]
     }
@@ -19,6 +20,9 @@ const surveyResults = (state = [], action) => {
     }
     if (action.type === 'COMMENT') {
         return [...state, action.payload]
+    }
+    if (action.type === 'CLEAR') {
+        return []
     }
     return state;
 }

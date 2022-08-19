@@ -5,10 +5,11 @@ function Thank() {
     const history = useHistory()
 
     const next = () => {
+        event.preventDefault()
         history.push('/feeling')
     }
 
-    return(
+    return (
         <>
             <h1>Thank!</h1>
             <form onSubmit={next}>
