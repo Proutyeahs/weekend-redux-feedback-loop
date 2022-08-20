@@ -1,16 +1,15 @@
 import { useHistory } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 function Thank() {
 
     const history = useHistory()
 
     const next = () => {
-        event.preventDefault()
         history.push('/feeling')
     }
 
     const main = () => {
-        event.preventDefault()
         history.push('/')
     }
 
@@ -18,12 +17,8 @@ function Thank() {
         <>
             <h1>Thanks you!</h1>
             <h2>Start New Survey?</h2>
-            <form onSubmit={next}>
-                <button>Yes</button>
-            </form>
-            <form onSubmit={main}>
-                <button>No</button>
-            </form>
+            <Button onClick={next} variant="outlined" color="secondary">Yes</Button>
+            <Button onClick={main} variant="outlined" color="secondary">No</Button>
         </>
     )
 }

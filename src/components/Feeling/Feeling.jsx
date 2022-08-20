@@ -1,39 +1,48 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { TextField, Button } from '@material-ui/core';
 
 function Feeling() {
 
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [feeling, setFeeling] = useState('')
+    const min = 0;
+    const max = 10;
 
-    const feelingChange = (e) => {
-        setFeeling(e.target.value)
-    }
+    const [value, setValue] = useState('');
+
+    const handleChange = event => {
+        const value = Math.max(min, Math.min(max, Number(event.target.value)));
+        setValue(value);
+    };
+
 
     const next = () => {
-        if (feeling === '') {
+        if (value === '') {
             alert('Please rate your emotional state!')
         } else {
             event.preventDefault()
-            console.log(feeling)
+            console.log(value)
             dispatch({
                 type: 'RESULT',
-                payload: feeling
+                payload: value
             })
-            setFeeling('')
+            setValue('')
             history.push('/understand')
         }
     }
 
     return (
         <>
-            <h1>how r u feeling</h1>
+            <h1>On a scale of one to ten how are you feeling?</h1>
             <form onSubmit={next}>
-                <input onChange={feelingChange} type='number' />
-                <button>Next</button>
+                <TextField
+                    id="standard-basic" label="Rating"
+                    value={value}
+                    onChange={handleChange} type='number' />
+                <Button type="submit" variant="outlined" color="secondary">Next</Button>
             </form>
         </>
     )

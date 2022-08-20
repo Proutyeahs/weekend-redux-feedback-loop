@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { TextField, Button } from '@material-ui/core';
 
 function Comment() {
 
@@ -26,10 +27,12 @@ function Comment() {
 
     return (
         <>
-            <h1>add comments here</h1>
+            <h1>Please add any additional comments you may have</h1>
             <form onSubmit={next}>
-                <input onChange={commentChange} type='text' />
-                <button>Next</button>
+                <TextField
+                    id="standard-basic" label="Comments"
+                    onChange={commentChange} type='text' />
+                <Button type="submit" variant="outlined" color="secondary">Next</Button>
             </form>
         </>
     )
