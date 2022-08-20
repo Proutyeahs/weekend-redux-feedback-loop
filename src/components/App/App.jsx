@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import './App.css';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Header from '../Header/Header';
@@ -10,6 +9,7 @@ import Support from '../Support/Support';
 import Comment from '../Comment/Comment';
 import Submit from '../Submit/Submit';
 import Thank from '../Thank/Thank';
+import Admin from '../Admin/Admin';
 
 function App() {
 
@@ -38,6 +38,11 @@ function App() {
       </Route>
       <Route path={'/thank'}>
         <Thank />
+      </Route>
+      <Route path={'/admin'}>
+        <>
+          <Admin />
+        </>
       </Route>
     </Router >
   );
