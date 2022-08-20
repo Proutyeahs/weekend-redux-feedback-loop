@@ -16,4 +16,44 @@ router.post('/', (req, res) => {
     })
 })
 
+router.get('/', (req, res) => {
+    const queryText = `SELECT * FROM "feedback" ORDER BY "id";`;
+    pool.query(queryText).then((results) => {
+        res.send(results.rows);
+    }).catch((error) => {
+        console.log(error)
+        res.sendStatus(500)
+    })
+})
+
+router.delete('/:id', (req,res) => {
+    const id = req.params.id
+    const queryText =`
+    DELETE FROM "feedback"
+    WHERE id = $1;`;
+    pool.query(queryText, [id]).then(results => {
+        res.sendStatus(200)
+    }).catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+    })
+})
+
+router.put('/flag/:id', (req, res) => {
+    console.log(req.params.id)
+    const id = req.params.id;
+    const flag = req.body.isFlagged;
+    console.log(flag)
+    queryText =`
+    UPDATE "feedback"
+    SET "flagged" = $2
+    WHERE "id" = $1;`;
+    pool.query(queryText, [id, flag]).then(results => {
+        res.sendStatus(200)
+    }).catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+    })
+})
+
 module.exports = router;
