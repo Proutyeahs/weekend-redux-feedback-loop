@@ -9,11 +9,20 @@ function Thank() {
         history.push('/feeling')
     }
 
+    const main = () => {
+        event.preventDefault()
+        history.push('/')
+    }
+
     return (
         <>
-            <h1>Thank!</h1>
+            <h1>Thanks you!</h1>
+            <h2>Start New Survey?</h2>
             <form onSubmit={next}>
-                <button>Start New Survey?</button>
+                <button>Yes</button>
+            </form>
+            <form onSubmit={main}>
+                <button>No</button>
             </form>
         </>
     )

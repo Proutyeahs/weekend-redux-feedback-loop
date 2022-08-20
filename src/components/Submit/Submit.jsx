@@ -53,7 +53,7 @@ function Submit() {
                 </tbody>
             </table>
             <form onSubmit={next}>
-                <button>Next</button>
+                <button>Submit</button>
             </form>
         </>
     )
