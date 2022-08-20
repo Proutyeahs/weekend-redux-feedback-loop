@@ -7,13 +7,10 @@ function Support() {
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [support, setSupport] = useState({support : ''})
+    let [support, setSupport] = useState('')
 
     const supportChange = (e) => {
-        setSupport({
-            ...support,
-            support: e.target.value
-        })
+        setSupport(e.target.value)
     }
 
     const next = () => {
@@ -26,7 +23,7 @@ function Support() {
                 type: 'RESULT',
                 payload: support
             })
-            setSupport({support : ''})
+            setSupport('')
             history.push('/comment')
         }
     }

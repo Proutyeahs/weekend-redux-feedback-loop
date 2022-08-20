@@ -7,13 +7,10 @@ function Understand() {
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [understand, setUnderstand] = useState({understanding : ''})
+    let [understand, setUnderstand] = useState('')
 
     const understandChange = (e) => {
-        setUnderstand({
-            ...understand,
-            understanding: e.target.value
-        })
+        setUnderstand(e.target.value)
     }
 
     const next = () => {
@@ -26,7 +23,7 @@ function Understand() {
                 type: 'RESULT',
                 payload: understand
             })
-            setUnderstand({understanding : ''})
+            setUnderstand('')
             history.push('/support')
         }
     }

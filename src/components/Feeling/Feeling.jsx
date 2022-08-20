@@ -7,13 +7,10 @@ function Feeling() {
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [feeling, setFeeling] = useState({feeling: ''})
+    let [feeling, setFeeling] = useState('')
 
     const feelingChange = (e) => {
-        setFeeling({
-            ...feeling,
-            feeling: e.target.value
-        })
+        setFeeling(e.target.value)
     }
 
     const next = () => {
@@ -26,7 +23,7 @@ function Feeling() {
                 type: 'RESULT',
                 payload: feeling
             })
-            setFeeling({feeling: ''})
+            setFeeling('')
             history.push('/understand')
         }
     }

@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux'
+import axios from "axios";
 
 function Submit() {
 
@@ -9,11 +10,25 @@ function Submit() {
     const surveyResults = useSelector((store) => store.surveyResults);
 
     const next = () => {
-        event.preventDefault()
-        dispatch({
-            type: 'CLEAR',
+        console.log(surveyResults)
+        axios({
+            method: 'POST',
+            url: '/survey',
+            data: {
+                feeling: surveyResults[0],
+                understanding: surveyResults[1],
+                support: surveyResults[2],
+                comments: surveyResults[3]
+            }
+        }).then(response => {
+            event.preventDefault()
+            dispatch({
+                type: 'CLEAR',
+            })
+            history.push('/thank')
+        }).catch(err => {
+            console.log('submit', err)
         })
-        history.push('/thank')
     }
 
     return (
@@ -30,10 +45,10 @@ function Submit() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{surveyResults.feeling}</td>
-                        <td>{surveyResults.understanding}</td>
-                        <td>{surveyResults.support}</td>
-                        <td>{surveyResults.comments}</td>
+                        <td>{surveyResults[0]}</td>
+                        <td>{surveyResults[1]}</td>
+                        <td>{surveyResults[2]}</td>
+                        <td>{surveyResults[3]}</td>
                     </tr>
                 </tbody>
             </table>

@@ -7,10 +7,10 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const surveyResults = (state = {}, action) => {
+const surveyResults = (state = [], action) => {
     console.log(state)
     if (action.type === 'RESULT') {
-        return [state, action.payload]
+        return [...state, action.payload]
     }
     if (action.type === 'CLEAR') {
         return []

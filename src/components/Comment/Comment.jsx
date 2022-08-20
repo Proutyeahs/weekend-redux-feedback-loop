@@ -7,13 +7,10 @@ function Comment() {
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [comment, setComment] = useState({ comments: '' })
+    let [comment, setComment] = useState('')
 
     const commentChange = (e) => {
-        setComment({
-            ...comment,
-            comments: e.target.value
-        })
+        setComment(e.target.value)
     }
 
     const next = () => {
@@ -23,7 +20,7 @@ function Comment() {
             type: 'RESULT',
             payload: comment
         })
-        setComment({ comments: '' })
+        setComment('')
         history.push('/submit')
     }
 
