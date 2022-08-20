@@ -8,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Results from "../Results/Results";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -44,38 +45,6 @@ function Admin() {
         })
     }
 
-    const remove = (id) => {
-        axios({
-            method: 'DELETE',
-            url: `/survey/${id}`
-        }).then(results => {
-            console.log(results)
-            getSurveys()
-        }).catch(err => {
-            console.log(err)
-        })
-    }
-
-
-    const [isFlagged, setIsFlagged] = useState(false)
-
-    const flag = (id) => {
-        setIsFlagged(current => !current);
-        console.log(isFlagged)
-        axios({
-            method: 'PUT',
-            url: `/survey/flag/${id}`,
-            data: {
-                isFlagged: isFlagged
-            }
-        }).then((response) => {
-            console.log(response)
-            //getSurveys()
-        }).catch(err => {
-            console.log(err)
-        })
-    }
-
     return (
         <>
             <h1>Admin Page</h1>
@@ -92,27 +61,8 @@ function Admin() {
                     </TableHead>
                     <TableBody>
                         {results.map(answers => (
-                            <StyledTableRow
-                                style={{
-                                    backgroundColor: isFlagged ? 'hotpink' : ''
-                                }}
-                                key={answers.id}>
-                                <StyledTableCell>
-                                    {answers.feeling}
-                                </StyledTableCell>
-                                <StyledTableCell>
-                                    {answers.understanding}
-                                </StyledTableCell>
-                                <StyledTableCell>
-                                    {answers.support}
-                                </StyledTableCell>
-                                <StyledTableCell>
-                                    {answers.comments}
-                                </StyledTableCell>
-                                <StyledTableCell>
-                                    <Button onClick={() => flag(answers.id)}>Flag</Button>
-                                    <Button onClick={() => remove(answers.id)}>Delete</Button>
-                                </StyledTableCell>
+                            <StyledTableRow key={answers.id}>
+                                <Results getSurveys={getSurveys} answers={answers}/>
                             </StyledTableRow>
                         ))}
                     </TableBody>
