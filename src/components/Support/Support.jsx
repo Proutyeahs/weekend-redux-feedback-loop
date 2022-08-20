@@ -7,24 +7,35 @@ function Support() {
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [support, setSupport] = useState('')
+    let [support, setSupport] = useState({support : ''})
+
+    const supportChange = (e) => {
+        setSupport({
+            ...support,
+            support: e.target.value
+        })
+    }
 
     const next = () => {
-        event.preventDefault()
-        console.log(support)
-        dispatch({
-            type: 'SUPPORT',
-            payload: support
-        })
-        setSupport('')
-        history.push('/comment')
+        if (support === '') {
+            alert('Please rate how supported you feel!')
+        } else {
+            event.preventDefault()
+            console.log(support)
+            dispatch({
+                type: 'RESULT',
+                payload: support
+            })
+            setSupport({support : ''})
+            history.push('/comment')
+        }
     }
 
     return (
         <>
             <h1>R u feeling supported</h1>
             <form onSubmit={next}>
-                <input onChange={(e) => setSupport(e.target.value)} type='number' />
+                <input onChange={supportChange} type='number' />
                 <button>Next</button>
             </form>
         </>

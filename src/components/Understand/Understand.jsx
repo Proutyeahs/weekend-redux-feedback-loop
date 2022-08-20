@@ -7,24 +7,35 @@ function Understand() {
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [understand, setUnderstand] = useState('')
+    let [understand, setUnderstand] = useState({understanding : ''})
+
+    const understandChange = (e) => {
+        setUnderstand({
+            ...understand,
+            understanding: e.target.value
+        })
+    }
 
     const next = () => {
-        event.preventDefault()
-        console.log(understand)
-        dispatch({
-            type: 'UNDERSTAND',
-            payload: understand
-        })
-        setUnderstand('')
-        history.push('/support')
+        if (understand === '') {
+            alert('Please rate how well you understand everything!')
+        } else {
+            event.preventDefault()
+            console.log(understand)
+            dispatch({
+                type: 'RESULT',
+                payload: understand
+            })
+            setUnderstand({understanding : ''})
+            history.push('/support')
+        }
     }
 
     return (
         <>
             <h1>how well do u understand things</h1>
             <form onSubmit={next}>
-            <input onChange={(e) => setUnderstand(e.target.value)} type='number' />
+                <input onChange={understandChange} type='number' />
                 <button>Next</button>
             </form>
         </>

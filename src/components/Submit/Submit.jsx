@@ -30,9 +30,10 @@ function Submit() {
                 </thead>
                 <tbody>
                     <tr>
-                        {surveyResults.map(results => (
-                            <td key={results}>{results}</td>
-                        ))}
+                        <td>{surveyResults.feeling}</td>
+                        <td>{surveyResults.understanding}</td>
+                        <td>{surveyResults.support}</td>
+                        <td>{surveyResults.comments}</td>
                     </tr>
                 </tbody>
             </table>

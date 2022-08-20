@@ -5,6 +5,7 @@ function Wack() {
     const history = useHistory()
 
     const next = () => {
+        event.preventDefault()
         history.push('/feeling')
     }
 
@@ -12,7 +13,7 @@ function Wack() {
         <>
             <h1>Start assesment?</h1>
             <form onSubmit={next}>
-                <button>Next</button>
+                <button>Start</button>
             </form>
         </>
     )

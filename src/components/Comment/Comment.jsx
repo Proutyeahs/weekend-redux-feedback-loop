@@ -7,16 +7,23 @@ function Comment() {
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [comment, setComment] = useState('')
+    let [comment, setComment] = useState({ comments: '' })
+
+    const commentChange = (e) => {
+        setComment({
+            ...comment,
+            comments: e.target.value
+        })
+    }
 
     const next = () => {
         event.preventDefault()
         console.log(comment)
         dispatch({
-            type: 'COMMENT',
+            type: 'RESULT',
             payload: comment
         })
-        setComment('')
+        setComment({ comments: '' })
         history.push('/submit')
     }
 
@@ -24,7 +31,7 @@ function Comment() {
         <>
             <h1>add comments here</h1>
             <form onSubmit={next}>
-                <input onChange={(e) => setComment(e.target.value)} type='text' />
+                <input onChange={commentChange} type='text' />
                 <button>Next</button>
             </form>
         </>
