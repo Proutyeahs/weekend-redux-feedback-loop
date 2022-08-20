@@ -1,9 +1,23 @@
 # Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+Weekend Redux Feedback Loop
 
 ## Description
+Duration: August 19th-20th
 
-Your project description goes here. What problem did you solve? How did you solve it?
+This application is a survey to asses how a user is feeling, their undersatnding of material and how supported they feelt during the week. A user is able to input their ratings, add comments and edit submissions before completing the survey.
+On the admin side of the app, all the survey results are viewable. The admin may flag submissions for further review or delete entries entirely.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+### built with
+React.js
+Redux.js
+Node.js
+JSX
+SQL
+Express.js
+Axios
+HTML
+CSS
+PG
+MUI
+
+To see the fully functional site, please visit: https://evening-ocean-90814.herokuapp.com/#/
