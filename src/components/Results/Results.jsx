@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
@@ -28,19 +27,16 @@ function Results({ answers, getSurveys }) {
         })
     }
 
-    const [isFlagged, setIsFlagged] = useState(false)
-
     const flag = (id) => {
-        setIsFlagged(current => !current);
-        console.log(isFlagged)
         axios({
             method: 'PUT',
             url: `/survey/flag/${id}`,
             data: {
-                isFlagged: isFlagged
+                isFlagged: !answers.flagged
             }
         }).then((response) => {
             console.log(response)
+            getSurveys()
         }).catch(err => {
             console.log(err)
         })
@@ -63,7 +59,7 @@ function Results({ answers, getSurveys }) {
             <StyledTableCell>
                 <Button
                     style={{
-                        backgroundColor: isFlagged ? 'hotpink' : ''
+                        backgroundColor: answers.flagged ? 'hotpink' : ''
                     }}
                     onClick={() => flag(answers.id)}>Flag</Button>
                 <Button onClick={() => remove(answers.id)}>Delete</Button>
