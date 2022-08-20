@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Button } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
@@ -14,14 +14,6 @@ const StyledTableCell = withStyles((theme) => ({
         fontSize: 14,
     },
 }))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-    root: {
-        '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.action.hover,
-        },
-    },
-}))(TableRow);
 
 function Results({ answers, getSurveys }) {
 
@@ -37,7 +29,6 @@ function Results({ answers, getSurveys }) {
         })
     }
 
-
     const [isFlagged, setIsFlagged] = useState(false)
 
     const flag = (id) => {
@@ -51,7 +42,6 @@ function Results({ answers, getSurveys }) {
             }
         }).then((response) => {
             console.log(response)
-            //getSurveys()
         }).catch(err => {
             console.log(err)
         })
