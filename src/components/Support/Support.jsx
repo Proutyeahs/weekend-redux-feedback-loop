@@ -1,39 +1,47 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { TextField, Button } from '@material-ui/core';
 
 function Support() {
 
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [support, setSupport] = useState('')
+    const min = 0;
+    const max = 10;
 
-    const supportChange = (e) => {
-        setSupport(e.target.value)
-    }
+    const [value, setValue] = useState('');
+
+    const handleChange = event => {
+        const value = Math.max(min, Math.min(max, Number(event.target.value)));
+        setValue(value);
+    };
 
     const next = () => {
-        if (support === '') {
+        if (value === '') {
             alert('Please rate how supported you feel!')
         } else {
             event.preventDefault()
-            console.log(support)
+            console.log(value)
             dispatch({
                 type: 'RESULT',
-                payload: support
+                payload: value
             })
-            setSupport('')
+            setValue('')
             history.push('/comment')
         }
     }
 
     return (
         <>
-            <h1>R u feeling supported</h1>
+            <h1>On a scale of one to ten how supported do you feel?</h1>
             <form onSubmit={next}>
-                <input onChange={supportChange} type='number' />
-                <button>Next</button>
+                <TextField
+                    id="standard-basic" label="Rating"
+                    value={value}
+                    onChange={handleChange} type='number' />
+                <Button type="submit" variant="outlined" color="secondary">Next</Button>
             </form>
         </>
     )

@@ -1,39 +1,47 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { TextField, Button } from '@material-ui/core';
 
 function Understand() {
 
     const history = useHistory()
     let dispatch = useDispatch()
 
-    let [understand, setUnderstand] = useState('')
+    const min = 0;
+    const max = 10;
 
-    const understandChange = (e) => {
-        setUnderstand(e.target.value)
-    }
+    const [value, setValue] = useState('');
+
+    const handleChange = event => {
+        const value = Math.max(min, Math.min(max, Number(event.target.value)));
+        setValue(value);
+    };
 
     const next = () => {
-        if (understand === '') {
+        if (value === '') {
             alert('Please rate how well you understand everything!')
         } else {
             event.preventDefault()
-            console.log(understand)
+            console.log(value)
             dispatch({
                 type: 'RESULT',
-                payload: understand
+                payload: value
             })
-            setUnderstand('')
+            setValue('')
             history.push('/support')
         }
     }
 
     return (
         <>
-            <h1>how well do u understand things</h1>
+            <h1>On a scale of one to ten how well do you understand the content?</h1>
             <form onSubmit={next}>
-                <input onChange={understandChange} type='number' />
-                <button>Next</button>
+                <TextField
+                    id="standard-basic" label="Rating"
+                    value={value}
+                    onChange={handleChange} type='number' />
+                <Button type="submit" variant="outlined" color="secondary">Next</Button>
             </form>
         </>
     )

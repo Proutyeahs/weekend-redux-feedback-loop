@@ -11,7 +11,6 @@ import Comment from '../Comment/Comment';
 import Submit from '../Submit/Submit';
 import Thank from '../Thank/Thank';
 
-
 function App() {
 
   return (

@@ -1,20 +1,18 @@
 import { useHistory } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 function Wack() {
 
     const history = useHistory()
 
     const next = () => {
-        event.preventDefault()
         history.push('/feeling')
     }
 
     return (
         <>
             <h1>Start assesment?</h1>
-            <form onSubmit={next}>
-                <button>Start</button>
-            </form>
+            <Button onClick={next} variant="outlined" color="secondary">Start</Button>
         </>
     )
 }
