@@ -39,4 +39,21 @@ router.delete('/:id', (req,res) => {
     })
 })
 
+router.put('/flag/:id', (req, res) => {
+    console.log(req.params.id)
+    const id = req.params.id;
+    const flag = req.body.isFlagged;
+    console.log(flag)
+    queryText =`
+    UPDATE "feedback"
+    SET "flagged" = $2
+    WHERE "id" = $1;`;
+    pool.query(queryText, [id, flag]).then(results => {
+        res.sendStatus(200)
+    }).catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+    })
+})
+
 module.exports = router;

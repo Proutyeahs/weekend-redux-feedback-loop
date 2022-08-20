@@ -36,9 +36,9 @@ function Admin() {
     const [results, setResults] = useState([])
 
     const getSurveys = () => {
-        axios.get('/survey').then(respose => {
-            console.log(respose.data)
-            setResults(respose.data)
+        axios.get('/survey').then(response => {
+            console.log(response.data)
+            setResults(response.data)
         }).catch(err => {
             console.log(err)
         })
@@ -48,9 +48,29 @@ function Admin() {
         axios({
             method: 'DELETE',
             url: `/survey/${id}`
-        }).then ( results => {
+        }).then(results => {
             console.log(results)
             getSurveys()
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+
+    const [isFlagged, setIsFlagged] = useState(false)
+
+    const flag = (id) => {
+        setIsFlagged(current => !current);
+        console.log(isFlagged)
+        axios({
+            method: 'PUT',
+            url: `/survey/flag/${id}`,
+            data: {
+                isFlagged: isFlagged
+            }
+        }).then((response) => {
+            console.log(response)
+            //getSurveys()
         }).catch(err => {
             console.log(err)
         })
@@ -72,7 +92,11 @@ function Admin() {
                     </TableHead>
                     <TableBody>
                         {results.map(answers => (
-                            <StyledTableRow key={answers.id}>
+                            <StyledTableRow
+                                style={{
+                                    backgroundColor: isFlagged ? 'hotpink' : ''
+                                }}
+                                key={answers.id}>
                                 <StyledTableCell>
                                     {answers.feeling}
                                 </StyledTableCell>
@@ -86,6 +110,7 @@ function Admin() {
                                     {answers.comments}
                                 </StyledTableCell>
                                 <StyledTableCell>
+                                    <Button onClick={() => flag(answers.id)}>Flag</Button>
                                     <Button onClick={() => remove(answers.id)}>Delete</Button>
                                 </StyledTableCell>
                             </StyledTableRow>
