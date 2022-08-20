@@ -68,7 +68,7 @@ function Submit() {
     };
 
     const edit = () => {
-    if (value === '' || value1 === '' || value2 === '' || value3 === '') {
+    if (value === '' || value1 === '' || value2 === '') {
         alert('Be sure to input ratings for your feelings, understanding and support')
     } else {
         event.preventDefault()
