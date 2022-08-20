@@ -15,6 +15,10 @@ const surveyResults = (state = [], action) => {
     if (action.type === 'CLEAR') {
         return []
     }
+    if (action.type === 'EDIT') {
+        state = []
+        return action.payload
+    }
     return state;
 }
 
