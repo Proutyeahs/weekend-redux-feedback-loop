@@ -8,12 +8,14 @@ function Comment() {
     const history = useHistory()
     let dispatch = useDispatch()
 
+    // tracks changes to the input feild
     let [comment, setComment] = useState('')
 
     const commentChange = (e) => {
         setComment(e.target.value)
     }
 
+    // Sends input to the reducer and moves to the next page
     const next = () => {
         event.preventDefault()
         console.log(comment)

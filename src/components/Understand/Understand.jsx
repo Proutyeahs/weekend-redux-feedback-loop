@@ -11,6 +11,7 @@ function Understand() {
     const min = 1;
     const max = 10;
 
+    // Holds the value and limits the input to 1-10
     const [value, setValue] = useState('');
 
     const handleChange = event => {
@@ -18,6 +19,7 @@ function Understand() {
         setValue(value);
     };
 
+    // Sends input to the reducer and moves to the next page
     const next = () => {
         if (value === '') {
             alert('Please rate how well you understand everything!')

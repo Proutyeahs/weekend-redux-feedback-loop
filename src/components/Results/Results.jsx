@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 
+// MUI style
 const StyledTableCell = withStyles((theme) => ({
     head: {
         backgroundColor: theme.palette.common.black,
@@ -15,6 +16,7 @@ const StyledTableCell = withStyles((theme) => ({
 
 function Results({ answers, getSurveys }) {
 
+    // Deletes entries from the DB
     const remove = (id) => {
         axios({
             method: 'DELETE',
@@ -27,6 +29,7 @@ function Results({ answers, getSurveys }) {
         })
     }
 
+    // Updates the flagging value in the DB
     const flag = (id) => {
         axios({
             method: 'PUT',

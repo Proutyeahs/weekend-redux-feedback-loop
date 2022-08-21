@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Results from "../Results/Results";
 
+// MUI style
 const StyledTableCell = withStyles((theme) => ({
     head: {
         backgroundColor: theme.palette.common.black,
@@ -29,12 +30,15 @@ const StyledTableRow = withStyles((theme) => ({
 
 function Admin() {
 
+    // runs get on page load
     useEffect(() => {
         getSurveys();
     }, []);
 
+    // saves the results to be used locally
     const [results, setResults] = useState([])
 
+    // gets the surveys from the DB
     const getSurveys = () => {
         axios.get('/survey').then(response => {
             console.log(response.data)
@@ -44,6 +48,7 @@ function Admin() {
         })
     }
 
+    // table with loop to display the surveys
     return (
         <>
             <h1>Admin Page</h1>

@@ -13,6 +13,7 @@ import Admin from '../Admin/Admin';
 
 function App() {
 
+  // all the routes and their paths
   return (
     <Router>
       <Header />

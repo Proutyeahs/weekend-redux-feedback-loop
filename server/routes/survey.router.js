@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js')
 
+// route for posting new data
 router.post('/', (req, res) => {
     console.log(req.body)
     const queryText = `
@@ -16,6 +17,7 @@ router.post('/', (req, res) => {
     })
 })
 
+// route for getting DATA from DB
 router.get('/', (req, res) => {
     const queryText = `SELECT * FROM "feedback" ORDER BY "id" DESC;`;
     pool.query(queryText).then((results) => {
@@ -26,6 +28,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// route for deleting data from DB
 router.delete('/:id', (req,res) => {
     const id = req.params.id
     const queryText =`
@@ -39,6 +42,7 @@ router.delete('/:id', (req,res) => {
     })
 })
 
+// route to update the flagged value in DB
 router.put('/flag/:id', (req, res) => {
     console.log(req.params.id)
     const id = req.params.id;

@@ -13,6 +13,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import './Submit.css';
 
+// Style from MUI
 const StyledTableCell = withStyles((theme) => ({
     head: {
         backgroundColor: theme.palette.common.black,
@@ -33,6 +34,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 function Submit() {
 
+    // sets local values to the data from the reducer
     useEffect(() => {
         setValue(surveyResults[0]);
         setValue1(surveyResults[1]);
@@ -47,6 +49,7 @@ function Submit() {
     const min = 1;
     const max = 10;
 
+    // value - value3 save the inputs and limit what the entries can be
     const [value, setValue] = useState('');
 
     const handleChange = event => {
@@ -74,7 +77,12 @@ function Submit() {
         setValue3(event.target.value);
     };
 
+    const [isActive, setIsActive] = useState(false);
+
+    // This sends updated values to the reducer
+    // I am tempted to get rid of this but users may not know they can change inputs
     const edit = () => {
+        setIsActive(current => !current);
         if (value === '' || value1 === '' || value2 === '') {
             alert('Be sure to input ratings for your feelings, understanding and support')
         } else {
@@ -87,16 +95,17 @@ function Submit() {
         }
     }
 
+    // Posts the values to the database upon submission
     const next = () => {
         console.log(surveyResults)
         axios({
             method: 'POST',
             url: '/survey',
             data: {
-                feeling: surveyResults[0],
-                understanding: surveyResults[1],
-                support: surveyResults[2],
-                comments: surveyResults[3]
+                feeling: value,
+                understanding: value1,
+                support: value2,
+                comments: value3
             }
         }).then(response => {
             dispatch({
@@ -129,24 +138,36 @@ function Submit() {
                         <StyledTableRow>
                             <StyledTableCell>
                                 <TextField
+                                    style={{
+                                        backgroundColor: isActive ? 'lightpink' : ''
+                                    }}
                                     id="standard-basic"
                                     value={value}
                                     onChange={handleChange} type='number' />
                             </StyledTableCell>
                             <StyledTableCell>
                                 <TextField
+                                    style={{
+                                        backgroundColor: isActive ? 'lightpink' : ''
+                                    }}
                                     id="standard-basic"
                                     value={value1}
                                     onChange={handleChange1} type='number' />
                             </StyledTableCell>
                             <StyledTableCell>
                                 <TextField
+                                    style={{
+                                        backgroundColor: isActive ? 'lightpink' : ''
+                                    }}
                                     id="standard-basic"
                                     value={value2}
                                     onChange={handleChange2} type='number' />
                             </StyledTableCell>
                             <StyledTableCell>
                                 <TextField
+                                    style={{
+                                        backgroundColor: isActive ? 'lightpink' : ''
+                                    }}
                                     id="standard-basic"
                                     value={value3}
                                     onChange={handleChange3} type='text' />

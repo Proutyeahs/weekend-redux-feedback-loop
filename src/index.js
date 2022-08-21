@@ -7,6 +7,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
+// reducers to store / edit / clear data
 const surveyResults = (state = [], action) => {
     console.log(state)
     if (action.type === 'RESULT') {
