@@ -8,10 +8,10 @@ function Understand() {
     const history = useHistory()
     let dispatch = useDispatch()
 
-    const min = 1;
+    const min = 0;
     const max = 10;
 
-    // Holds the value and limits the input to 1-10
+    // Holds the value and limits the input to 0-10
     const [value, setValue] = useState('');
 
     const handleChange = event => {
@@ -37,7 +37,7 @@ function Understand() {
 
     return (
         <>
-            <h1>On a scale of one to ten how well do you understand the content?</h1>
+            <h1>On a scale of zero to ten how well do you understand the content?</h1>
             <form onSubmit={next}>
                 <TextField
                     id="standard-basic" label="Rating"

@@ -46,7 +46,7 @@ function Submit() {
     let dispatch = useDispatch()
     const surveyResults = useSelector((store) => store.surveyResults);
 
-    const min = 1;
+    const min = 0;
     const max = 10;
 
     // value - value3 save the inputs and limit what the entries can be
