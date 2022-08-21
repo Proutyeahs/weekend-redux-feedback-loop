@@ -8,7 +8,7 @@ function Feeling() {
     const history = useHistory()
     let dispatch = useDispatch()
 
-    const min = 0;
+    const min = 1;
     const max = 10;
 
     const [value, setValue] = useState('');

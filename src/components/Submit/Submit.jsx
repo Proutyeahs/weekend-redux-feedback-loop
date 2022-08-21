@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextField, Button } from '@material-ui/core';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -33,11 +33,18 @@ const StyledTableRow = withStyles((theme) => ({
 
 function Submit() {
 
+    useEffect(() => {
+        setValue(surveyResults[0]);
+        setValue1(surveyResults[1]);
+        setValue2(surveyResults[2]);
+        setValue3(surveyResults[3]);
+    }, []);
+
     const history = useHistory()
     let dispatch = useDispatch()
     const surveyResults = useSelector((store) => store.surveyResults);
 
-    const min = 0;
+    const min = 1;
     const max = 10;
 
     const [value, setValue] = useState('');
@@ -68,21 +75,17 @@ function Submit() {
     };
 
     const edit = () => {
-    if (value === '' || value1 === '' || value2 === '') {
-        alert('Be sure to input ratings for your feelings, understanding and support')
-    } else {
-        event.preventDefault()
-        console.log(value)
-        dispatch({
-            type: 'EDIT',
-            payload: [value, value1, value2, value3]
-        })
-        setValue('')
-        setValue1('')
-        setValue2('')
-        setValue3('')
+        if (value === '' || value1 === '' || value2 === '') {
+            alert('Be sure to input ratings for your feelings, understanding and support')
+        } else {
+            event.preventDefault()
+            console.log(value)
+            dispatch({
+                type: 'EDIT',
+                payload: [value, value1, value2, value3]
+            })
+        }
     }
-}
 
     const next = () => {
         console.log(surveyResults)
@@ -99,6 +102,10 @@ function Submit() {
             dispatch({
                 type: 'CLEAR',
             })
+            setValue('')
+            setValue1('')
+            setValue2('')
+            setValue3('')
             history.push('/thank')
         }).catch(err => {
             console.log('submit', err)
@@ -122,33 +129,33 @@ function Submit() {
                         <StyledTableRow>
                             <StyledTableCell>
                                 <TextField
-                                    id="standard-basic" label={surveyResults[0]}
+                                    id="standard-basic"
                                     value={value}
                                     onChange={handleChange} type='number' />
                             </StyledTableCell>
                             <StyledTableCell>
                                 <TextField
                                     id="standard-basic"
-                                    value={value1} label={surveyResults[1]}
+                                    value={value1}
                                     onChange={handleChange1} type='number' />
                             </StyledTableCell>
                             <StyledTableCell>
                                 <TextField
                                     id="standard-basic"
-                                    value={value2} label={surveyResults[2]}
+                                    value={value2}
                                     onChange={handleChange2} type='number' />
                             </StyledTableCell>
                             <StyledTableCell>
                                 <TextField
                                     id="standard-basic"
-                                    value={value3} label={surveyResults[3]}
+                                    value={value3}
                                     onChange={handleChange3} type='text' />
                             </StyledTableCell>
                         </StyledTableRow>
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button onClick={edit} variant="outlined" color="secondary">Edit enties</Button>
+            <Button onClick={edit} variant="outlined" color="secondary">Edit entries</Button>
             <Button onClick={next} variant="outlined" color="secondary">Submit</Button>
         </>
     )
