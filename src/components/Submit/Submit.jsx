@@ -123,12 +123,12 @@ function Submit() {
 
     return (
         <>
-            <h1>IS all your info correct?</h1>
+            <h1>Is all your info correct?</h1>
             <TableContainer>
                 <Table>
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell>how are you feeling?:</StyledTableCell>
+                            <StyledTableCell>How are you feeling?:</StyledTableCell>
                             <StyledTableCell>How well are you understanding everything?:</StyledTableCell>
                             <StyledTableCell>How supported do you feel?:</StyledTableCell>
                             <StyledTableCell>What comments do you have?:</StyledTableCell>
@@ -176,7 +176,7 @@ function Submit() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button onClick={edit} variant="outlined" color="secondary">Edit entries</Button>
+            <Button onClick={edit} variant="outlined" color="secondary">Edit Entries</Button>
             <Button onClick={next} variant="outlined" color="secondary">Submit</Button>
         </>
     )

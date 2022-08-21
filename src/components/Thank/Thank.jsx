@@ -15,7 +15,7 @@ function Thank() {
 
     return (
         <>
-            <h1>Thanks you!</h1>
+            <h1>Thank you!</h1>
             <h2>Start New Survey?</h2>
             <Button onClick={next} variant="outlined" color="secondary">Yes</Button>
             <Button onClick={main} variant="outlined" color="secondary">No</Button>
